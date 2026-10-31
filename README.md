@@ -1,18 +1,35 @@
 # Social Media Report Generator
 
-A project repository for generating social-media reports.
+A Streamlit application that accepts campaign data in CSV or Excel format, runs an analysis workflow, and produces a downloadable Excel report.
 
-## Overview
-The project name indicates a reporting workflow for social-media data. Supported platforms, metrics, data sources, report formats, authentication requirements, and visualizations should be confirmed from the source code.
+## Features
 
-## Getting started
-1. Clone this repository.
-2. Review the dependency manifest and configuration examples.
-3. Configure any required API credentials as environment variables.
-4. Install dependencies and run the verified application entry point.
+- Upload `.csv` and `.xlsx` campaign datasets.
+- Preview the uploaded raw data.
+- Run the analysis and report-generation workflow.
+- Review the analyzed data in the app.
+- Download the generated Excel workbook.
 
-## Documentation checklist
-Document supported data sources, metric definitions, report examples, rate limits, privacy considerations, tests, and deployment instructions.
+## Run locally
 
-## Author
-**Atika Akhtar** · [GitHub](https://github.com/atikaakhtar101110-debug) · [LinkedIn](https://www.linkedin.com/in/atika-akhtar-367045261/)
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+## Deploy on Render
+
+A `render.yaml` blueprint is included for a Streamlit web service. If the analysis/report agents call an external LLM, add the required API key (for example, `OPENAI_API_KEY`) in the hosting dashboard.
+
+## Input
+
+Upload a CSV or Excel file containing the campaign metrics expected by the analysis workflow. Check the agent implementation for the exact required column names and data types.
+
+## Development notes
+
+- Validate uploaded schemas and handle empty or malformed files before processing.
+- Treat generated metrics as analytical outputs; verify formulas and assumptions against the source data.
+- Avoid uploading personal or confidential campaign data unless the deployment has appropriate access controls.
